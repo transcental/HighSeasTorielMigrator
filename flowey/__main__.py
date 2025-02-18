@@ -1,5 +1,8 @@
 import uvicorn
 from flowey.utils.env import env
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 def start():
     uvicorn.run(
