@@ -18,6 +18,7 @@ async def check_users():
     for user in users:
         slack_id = user.get("fields", {}).get("slack_id", "")
         if not slack_id:
+            logging.info("No slack_id found for user", user['id'])
             continue
         invited = await invite(slack_id)
         if invited:
