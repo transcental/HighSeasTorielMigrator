@@ -32,6 +32,7 @@ async def invite(user_id: str) -> bool:
                             break
                 completed = True
                 return False
+    completed = False
     while not completed:
         try:
             await env.slack_client.conversations_invite(
