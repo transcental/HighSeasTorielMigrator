@@ -9,7 +9,7 @@ async def invite(user_id: str) -> bool:
     while not completed:
         try:
             user_info = await env.slack_client.users_info(user=user_id)
-            mcg: bool = user_info["user"]["is_restricted"]
+            mcg: bool = user_info["user"].get("is_restricted", False)
             if not mcg:
                 return False
             completed = True
