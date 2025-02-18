@@ -49,5 +49,5 @@ async def invite(user_id: str) -> bool:
                 logging.error(f"Failed to invite user: {e}", exc_info=True)
                 completed = True
                 return False
-            continue
+                break
     return True
