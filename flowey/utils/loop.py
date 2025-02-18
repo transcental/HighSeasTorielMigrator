@@ -11,7 +11,7 @@ ac = Api(
 ut = ac.table(env.airtable_base_id, env.airtable_table_id)
 
 async def check_users():
-    users = ut.all(view="[FLOWEY] Non-migrated users", fields=["slack_id"])
+    users = ut.all(view="[FLOWEY] Non-migrated users")
     for user in users:
         slack_id = user.get("fields", {}).get("slack_id", "")
         if not slack_id:
