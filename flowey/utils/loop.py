@@ -5,13 +5,13 @@ import logging
 
 ac = Api(
     api_key=env.airtable_api_key,
-    endpoint_url="https://middleman.hackclub.com"
+    endpoint_url="https://middleman.hackclub.com/airtable"
 )
 
 ut = ac.table(env.airtable_base_id, env.airtable_table_id)
 
 async def check_users():
-    users = ut.all(view="[FLOWEY] Non-migrated users")
+    users = ut.all(view="[FLOWEY] Non-migrated users", fields=["slack_id"])
     for user in users:
         slack_id = user.get("fields", {}).get("slack_id", "")
         if not slack_id:
