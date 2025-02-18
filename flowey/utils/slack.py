@@ -3,9 +3,10 @@ import contextlib
 from slack_bolt.async_app import AsyncApp
 from starlette.applications import Starlette
 
-from flowey.utils import env
-from flowey.utils.loop import check_users
+import flowey.utils
 
+env = flowey.utils.env
+check_users = flowey.utils.check_users
 
 app = AsyncApp(
     token = env.slack_bot_token,
