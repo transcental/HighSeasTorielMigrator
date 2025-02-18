@@ -25,7 +25,13 @@ async def check_users():
         if invited:
             logging.info(f"Invited {slack_id}, messaging")
             await message(slack_id)
-            ut.update(user["id"], {"migrated_to_toriel": True})
+            while True:
+                try:
+                    ut.update(user["id"], {"migrated_to_toriel": True})
+                    break
+                except:
+                    logging.error("Failed to update user", user["id"])
+                    await asyncio.sleep(0.5)
             logging.info(f"Migrated {slack_id}")
         else:
             logging.info(f"Failed to invite {slack_id}")
