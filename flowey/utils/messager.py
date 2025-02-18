@@ -1,8 +1,6 @@
 import asyncio
 from slack_sdk.errors import SlackApiError
-import flowey.utils
-
-env = flowey.utils.env
+from flowey.utils.env import env
 
 async def message(user_id: str):
     done = False

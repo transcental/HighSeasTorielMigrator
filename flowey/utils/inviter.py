@@ -1,10 +1,8 @@
 import logging
-import flowey.utils
 from slack_sdk.errors import SlackApiError
 import asyncio
 import traceback
-
-env = flowey.utils.env
+from flowey.utils.env import env
 
 async def invite(user_id: str) -> bool:
     completed = False

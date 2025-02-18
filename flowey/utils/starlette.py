@@ -3,9 +3,7 @@ from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.routing import Route
 
-import flowey.utils
-main = flowey.utils.main
-slack_app = flowey.utils.slack_app
+from flowey.utils.slack import main, app as slack_app
 
 req_handler = AsyncSlackRequestHandler(slack_app)
 

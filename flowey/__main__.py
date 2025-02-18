@@ -1,7 +1,5 @@
 import uvicorn
-import flowey.utils
-
-env = flowey.utils.env
+from flowey.utils.env import env
 
 def start():
     uvicorn.run(

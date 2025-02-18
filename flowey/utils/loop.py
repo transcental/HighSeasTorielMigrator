@@ -1,11 +1,9 @@
 import asyncio
 from pyairtable import Api
-import flowey.utils
 import logging
-
-env = flowey.utils.env
-invite = flowey.utils.invite
-message = flowey.utils.message
+from flowey.utils.env import env
+from flowey.utils.inviter import invite
+from flowey.utils.messager import message
 
 ac = Api(
     api_key=env.airtable_api_key,
