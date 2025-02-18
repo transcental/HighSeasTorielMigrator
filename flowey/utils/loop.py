@@ -16,13 +16,17 @@ async def check_users():
     users = ut.all(view="[FLOWEY] Non-migrated users", fields=["slack_id"])
     logging.info(f"Checking {len(users)} users")
     for user in users:
+        logging.info(f"Checking {user['id']}")
         slack_id = user.get("fields", {}).get("slack_id", "")
         if not slack_id:
             logging.info("No slack_id found for user", user['id'])
             continue
         invited = await invite(slack_id)
         if invited:
+            logging.info(f"Invited {slack_id}, messaging")
             await message(slack_id)
             ut.update(user["id"], {"migrated_to_toriel": True})
             logging.info(f"Migrated {slack_id}")
+        else:
+            logging.info(f"Failed to invite {slack_id}")
         await asyncio.sleep(1)
