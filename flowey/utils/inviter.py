@@ -12,8 +12,10 @@ async def invite(user_id: str) -> bool:
             mcg: bool = user_info["user"]["is_restricted"]
             if not mcg:
                 return False
+            completed = True
         except SlackApiError as e:
             if e.response["error"] == "ratelimited":
+                logging.info("User info ratelimited")
                 retry_after = int(e.response.headers.get("Retry-After", 1))
                 await asyncio.sleep(retry_after)
             else:
