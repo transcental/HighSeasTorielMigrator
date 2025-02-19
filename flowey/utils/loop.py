@@ -47,5 +47,5 @@ async def check_users():
                 except:
                     logging.error("Failed to update user", user["id"])
                     await asyncio.sleep(0.5)
-                logging.info(f"Fixed message for {slack_id}")
+            logging.info(f"Fixed message for {slack_id}")
         await asyncio.sleep(1)
