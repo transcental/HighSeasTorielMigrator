@@ -71,7 +71,7 @@ async def check_users():
                 logging.info(f"Failed to invite {slack_id}")
             while True:
                 try:
-                    hs_ut.update(user["id"], {"Migrated to Toriel": True})
+                    a_ut.update(user["id"], {"Migrated to Toriel": True})
                     break
                 except:
                     logging.error("Failed to update user", user["id"])
