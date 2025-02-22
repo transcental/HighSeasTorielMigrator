@@ -4,13 +4,13 @@ import traceback
 from slack_sdk.errors import SlackApiError
 from flowey.utils.env import env
 
-async def message(user_id: str):
+async def message(user_id: str, arcade: bool = False):
     done = False
     while not done:
         try:
             await env.slack_client.chat_postMessage(
                 channel=user_id,
-                text="Howdy! I'm Flowey. Flowey the Flower!\n\nAs one of TORIEL's closest friends, I'm here to help you get upgraded to a full member now that the High Seas have drained leaving an empty backroom behind.\n*Stumble into <#C039PAG1AV7> to continue.* If you get stuck, feel free to message <@U054VC2KM9P> or email slack@hackclub.com!"
+                text="Howdy! I'm Flowey. Flowey the Flower!\n\nAs one of TORIEL's closest friends, I'm here to help you get upgraded to a full member now that the High Seas have drained leaving an empty backroom behind.\n*Stumble into <#C039PAG1AV7> to continue.* If you get stuck, feel free to message <@U054VC2KM9P> or email slack@hackclub.com!" if not arcade else "Howdy! I'm Flowey. Flowey the Flower!\n\nAs one of TORIEL's closest friends, I'm here to help you get upgraded to a full member now that the Arcade has disappeared, leaving an empty backroom behind.\n*Stumble into <#C039PAG1AV7> to continue.* If you get stuck, feel free to message <@U054VC2KM9P> or email slack@hackclub.com!"
             )
             done = True
         except SlackApiError as e:
